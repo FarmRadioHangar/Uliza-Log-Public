@@ -1,0 +1,23 @@
+.section-header {
+ color:rgb(61, 61, 61);
+ display: inline-block;
+ width: 50%;
+ font-weight: 500;
+}
+.section-header span {
+ font-size: 15px;
+ font-weight: normal
+}
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+.footer-element {
+   color: white;
+   font-size: 12px;
+   font-weight: 100;
+   margin:0 auto
+}
+mat-toolbar.mat-toolbar {
+   background-color: #449d44;
+   box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
+}

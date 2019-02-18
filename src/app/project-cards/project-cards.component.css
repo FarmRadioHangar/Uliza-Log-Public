@@ -1,0 +1,15 @@
+.project-card {
+ margin:10px
+}
+.mat-card-avatar {
+  height: 25px;
+  width: 25px;
+}
+.card-header-image {
+  background-size: cover;
+  background-position-x: 50%
+}
+
+.mat-card-content {
+	margin-bottom: 0px !important;
+}

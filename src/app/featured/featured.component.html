@@ -1,0 +1,36 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style='width:96%'>
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="project__name">
+    <th mat-header-cell *matHeaderCellDef> Program </th>
+    <td mat-cell *matCellDef="let element">
+     {{element.public_name.slice(0,22)}}<span *ngIf='element.public_name.length>23' >...</span>
+     <br>
+     ({{element.project__name.slice(0,24)}}<span *ngIf='element.project__name.length>25' >...</span>)
+    </td>
+  </ng-container>
+
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="radio_station__name">
+    <th mat-header-cell *matHeaderCellDef> Station </th>
+    <td mat-cell *matCellDef="let element">
+     <span class="sub-text">{{element.country_name}}&nbsp;</span>
+     <br>
+     {{element.radio_station__name}}
+    </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="program_type">
+    <th mat-header-cell *matHeaderCellDef> Program type </th>
+    <td mat-cell *matCellDef="let element"> {{element.weeks}} weeks {{element.program_type}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
