@@ -28,7 +28,7 @@
   <!-- Symbol Column -->
   <ng-container matColumnDef="program_type">
     <th mat-header-cell *matHeaderCellDef> Program type </th>
-    <td mat-cell *matCellDef="let element"> {{element.weeks}} weeks {{element.program_type}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.program_type}} {{element.weeks}} weeks  </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
