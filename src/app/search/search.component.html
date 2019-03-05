@@ -1,19 +1,41 @@
 <mat-form-field >
- <input matInput placeholder="Search projects" aria-label="search" [matAutocomplete]="auto" [formControl]="stateCtrl">
- <mat-autocomplete #auto="matAutocomplete" [panelWidth]="250">
-   <mat-option *ngFor="let result of results | async"  [value]="result.name">
-     <!-- country flag -->
-      <div _ngcontent-c4 class="card-header-image mat-card-avatar"
-       style="position:absolute; top:25%"
-       [style.background-image]="'url(https://www.geonames.org/flags/x/'
-       + getProjectCountryCode(result.country) + '.gif)'">
-      </div>
-     <!-- end country flag -->
-
-     <span (click)="redirect('http://google.com')" style="margin-left: 15%;">
-      {{result.name}} | {{result.doner}}
-     </span>
-
-   </mat-option>
- </mat-autocomplete>
+ <input matInput placeholder="Search " [(ngModel)]="searchValue" aria-label="search"  [formControl]="stateCtrl">
 </mat-form-field>
+
+ <div class="search-results-container" *ngIf="searchValue">
+  <div class="search-block">
+  <h4 *ngIf="(project_results| async).length > 0; else noProject">
+   Projects
+  </h4>
+
+  <ng-template #noProject>
+   <p>No projects found</p>
+  </ng-template>
+  <ul class="search-single-result" >
+   <li *ngFor="let result of project_results | async">
+     <div class="search-result-flag"
+      style="position:absolute; top:20%"
+      [style.background-image]="'url(https://www.geonames.org/flags/x/'
+      + getProjectCountryCode(result.country) + '.gif)'">
+     </div>
+     <span class="search-result-text">{{result.name}}</span>
+   </li>
+  </ul>
+  </div>
+ <div class="search-block" >
+  <h4 *ngIf="(radiostation_results| async).length > 0; else noStation">
+   Radio Stations
+  </h4>
+  <ng-template #noStation>
+   <p>No stations found</p>
+  </ng-template>
+  <ul class="search-single-result">
+   <li *ngFor="let result of radiostation_results | async">
+     <a class="link" href="/radio_station/{{result.id}}">
+     <mat-icon mat-list-icon>business</mat-icon>
+     {{result.name}}, {{result.city}}
+     </a>
+   </li>
+  </ul>
+ </div>
+ </div>

@@ -8,7 +8,9 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 import { MatToolbarModule, MatCardModule,MatTableModule, MatButtonModule,MatGridListModule, MatIconModule,MatListModule,MatInputModule,MatFormFieldModule } from '@angular/material';
 import {MatPaginatorModule } from '@angular/material/paginator';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import { ProjectCardsComponent } from './project-cards/project-cards.component';
 import { JustInComponent } from './just-in/just-in.component';
 import { FeaturedComponent } from './featured/featured.component';
@@ -17,6 +19,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 import { HumanizeDatePipe } from './humanize-date.pipe';
 import { SearchComponent } from './search/search.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { ProjectPageComponent } from './project-page/project-page.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -26,6 +31,8 @@ import { SearchComponent } from './search/search.component';
     FeaturedComponent,
     HumanizeDatePipe,
     SearchComponent,
+    LandingPageComponent,
+    ProjectPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,15 +44,18 @@ import { SearchComponent } from './search/search.component';
     LayoutModule,
     MatToolbarModule,
     MatFormFieldModule,
+    MatChipsModule,
     MatInputModule,
     MatTableModule,
     MatButtonModule,
     MatGridListModule,
     MatCardModule,
+    MatBadgeModule,
     MatIconModule,
+    MatSidenavModule,
     MatPaginatorModule,
-    MatAutocompleteModule,
-    MatListModule
+    MatListModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

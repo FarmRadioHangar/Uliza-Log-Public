@@ -13,3 +13,9 @@
 .mat-card-content {
 	margin-bottom: 0px !important;
 }
+.mat-card:hover .mat-card-title{
+ color: #449d44;
+}
+.mat-card:hover {
+ cursor: pointer;
+}

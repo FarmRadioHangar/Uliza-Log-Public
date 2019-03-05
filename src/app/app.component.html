@@ -1,6 +1,7 @@
+<!-- top menu -->
 <mat-toolbar color="custom">
   <mat-toolbar-row>
-    <span class="logo"></span>
+    <span class="logo link" routerLink="/"></span>
     <span class="toolbar-spacer"></span>
     <div class="" style="font-size:15px; color:white">
 
@@ -8,37 +9,31 @@
      <button mat-button>Login</button>
     </div>
   </mat-toolbar-row>
-
 </mat-toolbar>
+<!-- end top menu -->
 
-<div style="padding: 0 5%">
- <h2 class='section-header'>Discover Podcasts <span >radio stations all over Africa</span></h2>
- <app-project-cards></app-project-cards>
+<div id="main-container">
 
- <br>
+<!-- content -->
+ <router-outlet></router-outlet>
+<!-- end content -->
 
-   <h2 class='section-header'>Featured <span class="" style='font-size:15px'> radio programs</span></h2>
-   <h2 class='section-header'>Just in <span class="" style='font-size:15px'> newest episodes</span></h2>
-   <!-- top 10s  -->
-   <mat-grid-list cols='2' style="margin-top: -50px;">
-    <mat-grid-tile>
-     <app-featured style="width:97%;"></app-featured>
-    </mat-grid-tile>
+<br>
 
-    <mat-grid-tile>
-     <app-just-in style="width:97%;"></app-just-in>
-    </mat-grid-tile>
-   </mat-grid-list>
+
 </div>
+<br>
+<br>
 
+<!-- footer -->
 <mat-toolbar color="custom">
   <mat-toolbar-row style="padding: 1.5em 0 0 0" >
-   <img src="../assets/FRI-logo-BI-white.png" class='footer-element' alt="" style="width: 20%;">
+   <img src="../assets/FRI-logo-BI-white.png" class='footer-element' alt="" style="width: 250px;">
   </mat-toolbar-row>
 
   <!-- TODO Do we need to mention WUSC here -->
   <mat-toolbar-row >
    <span class="footer-element"> © 2018. Designed and built by Farm Radio International.</span>
   </mat-toolbar-row>
-
 </mat-toolbar>
+<!-- end footer -->

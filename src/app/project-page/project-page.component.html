@@ -1,0 +1,129 @@
+<div *ngIf='project'>
+
+  <br>
+  <mat-drawer-container class="example-container"  autosize hasBackdrop='false' style="border:1px solid #ddd;">
+    <mat-drawer #drawer id='drawer' class="example-sidenav" position='end' mode="over" autoFocus="False" [(opened)]="opened" (opened)="events.push('open!')"
+                 (closed)="events.push('close!')" >
+      <h4><mat-icon mat-list-icon>comments</mat-icon> Week 6 - Commments</h4>
+
+      <div class="media-body" >
+
+                              <!-- ngIf: comment.user --><h4 class="media-heading ng-binding ng-scope" ng-if="comment.user">
+                                  <!-- ngIf: comment.user__name == ' ' -->
+                                  Mulu Berhe
+
+                                  <small class="ng-binding">&nbsp; Radio officer at Farm Radio International </small>
+                                  <small class="pull-right ng-binding">3&nbsp;days, 15&nbsp;hours</small>
+                              </h4><!-- end ngIf: comment.user -->
+
+                              <!-- ngIf: !comment.user -->
+
+                              <div ng-bind-html="comment.content" class="comment-content ng-binding"><p>ለአዘጋጆች <br>•&nbsp;&nbsp;&nbsp;&nbsp;አርሶ አደሮችን ማካተታችሁ ፣ባለሞያ መጠተየቃችሁ በጣም ጥሩ ነው<br>•&nbsp;&nbsp;&nbsp;&nbsp;ወንድና ሴት ሁናችሁ ማቀረባችሁ ፐሮግራሙ እንዳይሰለች ያደርገዋል<br>•&nbsp;&nbsp;&nbsp;&nbsp;የአድማቾች ግብረመልስ ግን ለምን ከዩሊዛ ሎግ አውርዳችሁ በድምጽ እንደማታሰገቡ አልገባኝም <br>አመሰግናለሁ<br><br></p></div>
+
+                              <!-- ngIf: comment.user == user_id -->
+                          </div>
+      <mat-form-field style="width:100%" color='warn'>
+      <textarea matInput placeholder="Leave comments here"></textarea>
+    </mat-form-field>
+
+            <button type="button" mat-button (click)="drawer.toggle();toggleCommentShown()">
+             Comments
+            </button>
+    </mat-drawer>
+  <div class="row main-container" style=" padding:1% 3%" >
+     <div class="col-xl-4 col-lg-4 col-md-5 col-sm-5 col-xs-9" [class.hide]='commentShown'>
+        <mat-card class="project-card" >
+           <mat-card-header>
+
+             <mat-card-title>
+
+              <!-- country flag -->
+               <span class="search-result-flag" style=""
+                [style.background-image]="'url(https://www.geonames.org/flags/x/et.gif)'">
+               </span>
+              <!-- end country flag -->
+
+              <h2 class='section-header' style="margin-top:0; margin-left:30%">NuME <span >CIMMYT</span></h2>
+             </mat-card-title>
+           </mat-card-header>
+
+           <img src="http://localhost:8000/static/img/default_podcast_image.png"
+                alt="Project photo " style="max-width:100%;">
+           <mat-card-content>
+            <p><b>Jul, 2010 - Dec, 2015</b></p>
+             <p>
+               The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+             </p>
+
+
+           </mat-card-content>
+        </mat-card>
+     </div>
+
+      <div id="program-details" class="col-xl-6 col-lg-6 col-md-7 col-sm-7 col-xs-12 ">
+         <div class="" style="position:relative" [class.hide]='!commentShown'>
+
+              <!-- country flag -->
+               <span class="search-result-flag blocked-flag" style=""
+                [style.background-image]="'url(https://www.geonames.org/flags/x/et.gif)'">
+               </span>
+              <!-- end country flag -->
+           <h2 class='section-header' >NuME <span >CIMMYT</span></h2>
+         </div>
+
+         <mat-list-item >
+           <h3 class="section-header">
+            <mat-icon mat-list-icon>business</mat-icon>
+            Amhara radio station
+           </h3>
+         </mat-list-item>
+        <mat-list>
+         <mat-list-item style="color:#449d44" >
+           <mat-icon matBadgePosition="before" matBadge="4" mat-list-icon sty>radio</mat-icon>&nbsp;&nbsp;
+           <mat-form-field  style="font-size:20px;font-weight:bold;width:60%; " color='warn'>
+             <select matNativeControl required>
+               <option value="saab">Gembi Bekolo - Amhara</option>
+               <option value="mercedes">Mercedes</option>
+               <option value="audi">Audi</option>
+             </select>
+           <mat-hint>Radio Programs</mat-hint>
+
+           </mat-form-field>
+         </mat-list-item >
+
+         <mat-list-item>
+         </mat-list-item>
+
+
+         <div style="margin-left:5%">
+
+          <button mat-mini-fab color='primary' style="background-color:#449d44">
+           <mat-icon aria-label="Example icon-button with a heart icon" style="direction: rtl;" >podcast</mat-icon>
+          </button>
+         <b>&nbsp;&nbsp; 16 weeks program Jun 2010 - Jul 2012</b><br><br>
+         <mat-divider></mat-divider>
+         <br>
+         <mat-chip-list>
+           <mat-chip>Active program</mat-chip>
+         </mat-chip-list>
+         <div  class="" >
+         </div>
+         <mat-list-item *ngFor="let note of notes" style="color:gray">
+           <mat-icon mat-list-icon >assignment</mat-icon>
+           <h4 mat-line>Week # - {{note.name}}</h4>
+            <span class="">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+           <span class="">
+           </span>
+           <span class="">
+            <button type="button" mat-button (click)="drawer.toggle();toggleCommentShown()">
+             1 Comment
+            </button>
+
+
+           </span>
+         </mat-list-item>
+         </div>
+        </mat-list>
+      </div>
+  <br>
+</div>

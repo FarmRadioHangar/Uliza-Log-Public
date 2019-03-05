@@ -1,0 +1,25 @@
+<h2 class='section-header' *ngIf='!radiostation'>Discover Podcasts <span >radio stations all over Africa</span></h2>
+<h2 class='section-header' *ngIf='radiostation'>
+ <mat-icon mat-list-icon>business</mat-icon> {{radiostation['name']}}
+ <span>
+  {{radiostation['frequency']}} {{radiostation['city']}}
+ </span>
+</h2>
+ <app-project-page></app-project-page>
+ <app-project-cards></app-project-cards>
+ <br>
+
+ <div class ="row">
+
+  <!-- top 10s  -->
+
+  <div class=" col-xl-6  col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <h2 class='section-header'>Just in <span class="" style='font-size:15px'> newest episodes</span></h2>
+    <app-just-in style="width:97%;"></app-just-in>
+   </div>
+   
+  <div class=" col-xl-6  col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <h2 class='section-header '>Featured <span class="" style='font-size:15px'> radio programs</span></h2>
+    <app-featured style="width:97%;"></app-featured>
+  </div>
+ </div>

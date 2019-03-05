@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
-import {Project} from '../models';
+import {Project,Radiostation} from '../models';
 import {ProjectService} from '../project.service';
+import {RadiostationService} from '../radiostation.service'
 import {map, startWith} from 'rxjs/operators';
 import {CountryService} from '../country.service';
+import {Router} from '@angular/router';
 
 export interface State {
   flag: string;
@@ -18,15 +20,25 @@ export interface State {
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-  results = new Observable<Project[]>((observer) => {
+  project_results = new Observable<Project[]>((observer) => {
      this.stateCtrl.valueChanges
         .subscribe(
           value => this.projectService.search(value)
         .subscribe(result => observer.next(result['results']))
      );
-   });
+  });
+
+  radiostation_results = new Observable<Radiostation[]>((observer) => {
+     this.stateCtrl.valueChanges
+        .subscribe(
+          value => this.radioStationService.search(value)
+        .subscribe(result => observer.next(result))
+     );
+  });
 
   stateCtrl = new FormControl();
+  searchValue = '';
+
 
   states: Project[] = [];
 
@@ -36,6 +48,11 @@ export class SearchComponent {
 
 
   private countries: { [id: string] : string;} = {};
+
+  redirectToStation(stationId:Number) : void {
+   this.searchValue = '';
+   this.router.navigate(['/radio_station/'+stationId]);
+  }
 
   getCountries(): void {
    this.countryService.getCountries()
@@ -55,7 +72,10 @@ export class SearchComponent {
     return '';
   }
 
-  constructor(private projectService: ProjectService,private countryService: CountryService) {
+  constructor(private projectService: ProjectService,
+              private router: Router,
+              private radioStationService: RadiostationService,
+              private countryService: CountryService) {
    this.getCountries();
   }
 

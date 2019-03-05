@@ -14,6 +14,24 @@ export class Program {
   project:number;access:number[];
 }
 
+// "id": 9,
+//     "name": "Amhara Mass Media Agency",
+//     "city": "Bahir dar",
+//     "phone_number": "",
+//     "email": "amharamassmedia@gmail.com",
+//     "uliza_password": "ammaradio",
+//     "website": "amma.gov.et",
+//     "manager": "Siyoum Mekonen",
+//     "group_account_id": "auth0|311",
+//     "last_updated_at": "2018-12-10T08:40:42Z",
+//     "created_at": "2015-02-27T12:15:09Z",
+//     "country": 1//
+export class Radiostation {
+  id:number; name:string;city:string;
+  phone_number:number; email:string;uliza_password:string;website:string;
+  manager:string; group_account_id:number;country:number;
+}
+
 
 export class Country {
   id:number;

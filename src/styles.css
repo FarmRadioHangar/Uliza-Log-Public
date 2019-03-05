@@ -1,9 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: #ddd;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: #eee;}
 
 
+.section-header {
+ color:rgb(61, 61, 61);
+ display: inline-block;
+ font-weight: 500;
+}
+.section-header span {
+ font-size: 15px;
+ font-weight: normal
+}
 .logo {
 			display: inline-block;
 			background: url(assets/logo.png) no-repeat;
@@ -14,8 +23,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background:
 }
 
 
+.mat-row:hover {
+ background-color: #eee;
+ cursor: pointer;
+}
+
 app-project-cards .mat-grid-tile .mat-figure {
  align-items: initial !important;
+}
+
+.link {
+ cursor: pointer;
+}
+.link:hover {
+ color:#449d44;
 }
 
 .sub-text {
