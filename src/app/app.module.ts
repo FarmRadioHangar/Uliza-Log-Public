@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 
+import {MatSelectModule} from '@angular/material/select';
 import { MatToolbarModule, MatCardModule,MatTableModule, MatButtonModule,MatGridListModule, MatIconModule,MatListModule,MatInputModule,MatFormFieldModule } from '@angular/material';
 import {MatPaginatorModule } from '@angular/material/paginator';
 import {MatBadgeModule} from '@angular/material/badge';
@@ -45,6 +46,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatToolbarModule,
     MatFormFieldModule,
     MatChipsModule,
+    MatSelectModule,
     MatInputModule,
     MatTableModule,
     MatButtonModule,

@@ -9,6 +9,13 @@
 .mat-badge-content {
 background: #449d44;
 }
+.drawer-container {
+ border-radius: 4px;
+ padding:20px;
+ box-shadow: 0 2px 1px -1px rgba(0,0,0,.2),
+  0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12);
+ margin-bottom: 1em
+}
 .search-result-flag {
  position:absolute;left:10%;
  background-size: cover;
@@ -28,6 +35,14 @@ position: relative;
 left: -10px;
 top: 10px;
 }
+#project-normal-view mat-card {
+ margin:0px;
+ margin-top: 5%;
+ margin-left: 10px
+}
+#project-details {
+ padding: 0 5px;
+}
 
 #drawer {
  padding:10px;
@@ -39,21 +54,34 @@ top: 10px;
 }
 .program-details {
   margin-left:20px;
+  padding-bottom: 2em;
 }
+
+#project-mobile-view {
+ display: none
+}
+
 
 @media screen and (max-width: 850px) {
  #drawer {
   width: 85%
  }
-}
-
-@media screen and (max-width: 500px) {
- .project-card {
-  width:100%;
- margin-bottom: 1em;
+ #project-normal-view {
+  display: none !important;
+ }
+ #main-container {
+  padding: 0 3%
  }
 
+.hide {
+ display: block;
+}
  .program-details {
    margin-left:0;
+ }
+ .project-card {
+  width:100%;
+  margin-bottom: 1em;
+
  }
 }

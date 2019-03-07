@@ -17,4 +17,9 @@ export class ProgramService {
    return this.http.get<Program[]>(program_url);
   }
 
+  getProjectPrograms(projectId:String=''): Observable <Program[]>{
+   const program_url = Env.api_url+'programs?project='+projectId;
+   return this.http.get<Program[]>(program_url);
+  }
+
 }

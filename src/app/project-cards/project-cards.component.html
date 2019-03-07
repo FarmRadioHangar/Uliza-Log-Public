@@ -1,6 +1,6 @@
 
 <div class="row" style="width:113%">
-  <mat-card class="project-card col-lg-2 col-md-2 col-sm-3 col-xs-5"  *ngFor="let project of projects">
+  <mat-card class="project-card col-lg-2 col-md-2 col-sm-3 col-xs-5"  *ngFor="let project of projects" routerLink="/project/{{project.id}}">
     <mat-card-header>
       <div mat-card-avatar class="card-header-image" [style.background-image]="'url(https://www.geonames.org/flags/x/' + getProjectCountryCode(project) + '.gif)'"></div>
       <mat-card-title style="font-size:17px">

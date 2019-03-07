@@ -13,6 +13,11 @@ export class ProjectService {
 
   constructor(private http: HttpClient) {}
 
+  getProject(projectId:String='1'): Observable <Project[]> {
+   const project_url = Env.api_url+'projects?id='+projectId;
+   return this.http.get<Project[]>(project_url);
+  }
+
   getProjects(page_number:String='1'): Observable <Project[]> {
    const project_url = Env.api_url+'projects?ordering=-id&page='+String(page_number)+
                           '&page_size=5&country__not='+Env.exclude_countries;

@@ -15,4 +15,9 @@ export class CountryService {
    const country_url = 'http://localhost:3000/api/v1/countries?ordering=id';
    return this.http.get<Country[]>(country_url);
   }
+
+  getCountry(country_id:String='1'): Observable <Country[]> {
+   const country_url = 'http://localhost:3000/api/v1/countries?id='+country_id;
+   return this.http.get<Country[]>(country_url);
+  }
 }

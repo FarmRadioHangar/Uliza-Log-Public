@@ -16,7 +16,8 @@ export class FeaturedComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   getPrograms(): void{
-   var stationId = +this.route.snapshot.paramMap.get('stationId');
+   var stationId:any = +this.route.snapshot.paramMap.get('stationId');
+   
    if(!stationId)
     stationId = '';
 

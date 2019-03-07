@@ -7,8 +7,8 @@ const routes: Routes = [
  // { path: '', component: ProjectCardsComponent },
  { path: '', component: LandingPageComponent },
  { path: 'radio_station/:stationId', component: LandingPageComponent },
- { path: 'radio_station/:stationId/:projectId', component: LandingPageComponent },
- { path: 'project/:projectId', component: LandingPageComponent }
+ { path: 'radio_station/:stationId/:projectId', component: ProjectPageComponent },
+ { path: 'project/:projectId', component: ProjectPageComponent }
 ];
 
 @NgModule({
