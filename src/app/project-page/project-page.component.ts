@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {Project,Country,Program} from '../models';
+import {Project,Country,Program,Comment,Log} from '../models';
 import {ProjectService} from '../project.service';
 import {ProgramService} from '../program.service';
 import {CountryService} from '../country.service';
+import {CommentService} from '../comment.service';
+import {LogService} from '../log.service';
 import {ActivatedRoute} from '@angular/router';
 import {Meta} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {FormControl} from '@angular/forms';
+import {PageEvent} from '@angular/material';
 
 export interface Section {
   name: string;
@@ -20,12 +23,26 @@ export interface Section {
   './project-page.component.css']
 })
 export class ProjectPageComponent implements OnInit {
-  project = {};
-  programs = [];
+  project:Project;
+  programs:Program[];
+  comments:Comment[];
+  logs:Log[];
+  activeLog = null;
+  audio='https://log.uliza.fm/media/Uliza-log-test%201-11.mp3';
+  activeLogLabel = ": Most recent episode";
+
+
+  // MatPaginator Output
+  pageEvent: PageEvent = new PageEvent();
+
   commentShown=false;
   country_code = '';
   programControl = new FormControl('', []);;
   private countries: { [id: string] : string;} = {};
+
+  floor(num:number): Number {
+   return Math.floor(num);
+  }
 
   toggleCommentShown(): void {
    if (this.commentShown){
@@ -64,10 +81,46 @@ export class ProjectPageComponent implements OnInit {
    }
   }
 
+  fetchLogs(program: any): void {
+    this.logService.getProgramLogs(String(program['id'])).subscribe(
+     logs => {
+               this.logs = logs['results'];
+               if (this.logs.length>0) {
+                this.activeLog = this.logs[this.logs.length-1]
+                this.loadComments()
+               }
+             });
+  }
+
+  loadComments():void {
+
+   this.commentService.getComments(String(this.activeLog['id'])).subscribe(
+     comments => {
+       this.comments = comments;
+     })
+
+  }
+
+
+  changeActiveLog(log:any): void {
+   this.activeLog = log;
+
+   if (this.activeLog['recording_backup']){
+    let audioElement = <HTMLAudioElement> document.getElementById('audio');
+    audioElement.pause();
+    audioElement.src = 'https://log.uliza.fm/media/Uliza-log-Kwizera%20Fm%20-%20190%20-%20Phase%2003-6.mp3';
+   }
+
+   this.activeLogLabel = "";
+   this.loadComments()
+  }
+
   constructor(private route: ActivatedRoute,
               private projectService: ProjectService,
               private programService: ProgramService,
+              private logService: LogService,
               private countryService: CountryService,
+              private commentService: CommentService,
               private router: Router,
               private meta: Meta) {
    // <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -76,5 +129,8 @@ export class ProjectPageComponent implements OnInit {
 
   ngOnInit() {
    this.getProject();
+   this.programControl.valueChanges
+      .subscribe(value => this.fetchLogs(value));
+   this.pageEvent['pageIndex'] = 0;
   }
 }

@@ -44,6 +44,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
+    MatPaginatorModule,
     MatFormFieldModule,
     MatChipsModule,
     MatSelectModule,
@@ -55,7 +56,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatBadgeModule,
     MatIconModule,
     MatSidenavModule,
-    MatPaginatorModule,
     MatListModule,
     FlexLayoutModule
   ],

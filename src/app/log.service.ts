@@ -19,7 +19,7 @@ export class LogService {
    return this.http.get<Log[]>(log_url);
   }
   getProgramLogs(programId:String=''): Observable <Log[]> {
-   const log_url = Env.api_url+'logs?program='+programId;
+   const log_url = Env.api_url+'logs?postpone=false&program='+programId;
 
    return this.http.get<Log[]>(log_url);
   }

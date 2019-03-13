@@ -16,6 +16,19 @@ background: #449d44;
   0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12);
  margin-bottom: 1em
 }
+.hidden {
+ display: none;
+}
+.fix-icon {
+ position: relative;
+top: 5px;
+}
+.mat-paginator {
+ background-color: #fafafa ;
+}
+.active {
+ color: #449d44;
+}
 .search-result-flag {
  position:absolute;left:10%;
  background-size: cover;
@@ -28,6 +41,10 @@ background: #449d44;
 }
 .hide {
  display: none;
+}
+.log-list-item:hover {
+ color: #449d44;
+ cursor: pointer;
 }
 .blocked-flag {
  display: inline-block;

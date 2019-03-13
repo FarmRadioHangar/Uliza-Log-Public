@@ -18,7 +18,7 @@
       [style.background-image]="'url(https://www.geonames.org/flags/x/'
       + getProjectCountryCode(result.country) + '.gif)'">
      </div>
-     <span class="search-result-text">{{result.name}}</span>
+     <a href="/project/{{result.id}}" class="link search-result-text">{{result.name}} - {{result.doner}}</a>
    </li>
   </ul>
   </div>

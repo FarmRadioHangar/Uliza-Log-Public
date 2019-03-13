@@ -2,41 +2,32 @@
   <br>
 
   <mat-drawer-container class="drawer-container"  autosize hasBackdrop='false' >
-    <mat-drawer #drawer id='drawer' class="example-sidenav" position='end' mode="over" autoFocus="False" [(opened)]="opened" (opened)="events.push('open!')"
-                 (closed)="events.push('close!')" >
-      <h4><mat-icon mat-list-icon>comments</mat-icon> Week 6 - Commments</h4>
+    <mat-drawer #drawer id='drawer' position='end' mode="over" autoFocus="False" >
+    <button type="button" mat-button (click)="drawer.toggle();toggleCommentShown()" style="float:right">
+     X Close
+    </button>
+      <h4><mat-icon mat-list-icon class="fix-icon">comments</mat-icon> Comments</h4>
 
+      <div *ngIf="comments.length ==0">
+       No comments yet
+      </div>
       <div class="media-body" >
+       <div class="comment-content" *ngFor="let comment of comments">
+        <h3>
+        {{comment.contact__first_name}}
+        {{comment.contact__last_name}}
+        <span class="" style="color:gray;font-size:15px;">
+         {{comment.contact__job_title}}
+        </span>
+        </h3>
+        <span class="" [innerHTML]="comment.content"></span>
+       </div>
 
-                              <!-- ngIf: comment.user -->
-                              <h4 class="media-heading ng-binding ng-scope" ng-if="comment.user">
-                                  <!-- ngIf: comment.user__name == ' ' -->
-                                  Mulu Berhe
+      </div>
+    <br>
 
-                                  <small class="ng-binding">&nbsp; Radio officer at Farm Radio International </small>
-                                  <small class="pull-right ng-binding">3&nbsp;days, 15&nbsp;hours</small>
-                              </h4><!-- end ngIf: comment.user -->
-
-                              <!-- ngIf: !comment.user -->
-
-                              <div ng-bind-html="comment.content" class="comment-content ng-binding">
-                               <p>
-                                ለአዘጋጆች
-                                <br>
-                                •&nbsp;&nbsp;&nbsp;&nbsp;
-                                አርሶ አደሮችን ማካተታችሁ ፣ባለሞያ መጠተየቃችሁ በጣም ጥሩ ነው<br>•&nbsp;&nbsp;&nbsp;&nbsp;ወንድና ሴት ሁናችሁ ማቀረባችሁ ፐሮግራሙ እንዳይሰለች ያደርገዋል<br>•&nbsp;&nbsp;&nbsp;&nbsp;የአድማቾች ግብረመልስ ግን ለምን ከዩሊዛ ሎግ አውርዳችሁ በድምጽ እንደማታሰገቡ አልገባኝም <br>አመሰግናለሁ<br><br></p></div>
-
-                              <!-- ngIf: comment.user == user_id -->
-                          </div>
-      <mat-form-field style="width:100%" color='warn'>
-      <textarea matInput placeholder="Leave comments here"></textarea>
-    </mat-form-field>
-
-            <button type="button" mat-button (click)="drawer.toggle();toggleCommentShown()">
-             Comments
-            </button>
     </mat-drawer>
-    <div class="row " >
+    <div class="row " style="margin:0;">
       <div id="project-normal-view" class="col-xl-4 col-lg-4 col-md-5 col-sm-5 col-xs-9 "  [class.hide]='commentShown'>
         <mat-card class="project-card" >
            <mat-card-header>
@@ -54,9 +45,13 @@
            </mat-card-header>
 
            <img src="http://localhost:8000/static/img/default_podcast_image.png"
+                alt="Project photo " style="max-width:100%;" *ngIf="!project.image">
+
+           <img src="http://localhost:8000/static/img/{{project.image}}" *ngIf="project.image"
                 alt="Project photo " style="max-width:100%;">
            <mat-card-content>
-            <p><b>Jul, 2010 - Dec, 2015</b></p>
+            <br>
+            <p><b>{{project.start_date | date:"MMM yyyy"}} - {{project.end_date | date:"MMM yyyy"}}</b></p>
              <p>
                {{project.focus}}
              </p>
@@ -72,20 +67,20 @@
 
              <!-- country flag -->
               <span class="search-result-flag blocked-flag" style=""
-               [style.background-image]="'url(https://www.geonames.org/flags/x/et.gif)'">
+               [style.background-image]="'url(https://www.geonames.org/flags/x/'+country_code+'.gif)'">
               </span>
              <!-- end country flag -->
-          <h2 class='section-header' >{{project.name}} <span >CIMMYT</span></h2>
-          <p><b>Jul, 2010 - Dec, 2015</b></p>
+          <h2 class='section-header' >{{project.name}} <span >{{project.doner}}</span></h2>
+          <p><b>{{project.start_date |date: "MMM yyyy"}} - {{project.end_date | date: "MMM yyyy"}}</b></p>
         </div>
 
        <mat-list>
         <mat-list-item style="margin-left:-20px;">
-         <p style="color:gray">• {{programs.length}} Program<span *ngIf="programs.length>1">s</span> in {{project.name}} project •</p>
+         <p style="color:gray">{{programs.length}} Radio program<span *ngIf="programs.length>1">s</span> in this project</p>
         </mat-list-item>
         <mat-list-item style="color:#449d44;margin-left:-20px;" >
           <mat-icon matBadgePosition="before" matBadge="{{programs.length}}" mat-list-icon sty>radio</mat-icon>&nbsp;&nbsp;
-          <mat-form-field  style="font-size:20px;font-weight:bold;width:70%; " color='warn'>
+          <mat-form-field  style="font-size:17px;font-weight:bold;width:70%; " color='warn'>
             <mat-select [formControl]="programControl" >
               <mat-option *ngFor="let program of programs" [value]='program'>
                {{program.name}}
@@ -94,43 +89,74 @@
           </mat-form-field>
 
         </mat-list-item >
+        <mat-list-item>
+         {{programControl.value.weeks}} weeks program:
+         {{programControl.value.start_date| date:"MMM yyyy"}} - {{programControl.value.end_date | date:"MMM yyyy"}}
+        </mat-list-item>
 
         <mat-list-item style="margin-left:-20px;">
-          <h3 class="section-header">
-           <mat-icon mat-list-icon>business</mat-icon>
+          <h4 class="section-header">
+           <mat-icon mat-list-icon class="fix-icon">business</mat-icon>
            {{programControl.value.radio_station__name}}: {{programControl.value.public_name}}
-          </h3>
+          </h4>
         </mat-list-item>
 
         <p>
 
-        <button mat-mini-fab color='primary' style="background-color:#449d44">
+       <a href="http://localhost:3000/api/v1/logs/feed/{{programControl.value.id}}#itunes" mat-mini-fab color='primary' style="background-color:#449d44">
          <mat-icon aria-label="Example icon-button with a heart icon" style="direction: rtl;" >podcast</mat-icon>
-        </button>
-         &nbsp;&nbsp; {{programControl.value.weeks}} weeks program:
-         {{programControl.value.start_date| date:"MMM yyyy"}} - {{programControl.value.end_date | date:"MMM yyyy"}}
+        </a>
+        &nbsp;&nbsp;
+        Podcast URL
+        <br>
         </p>
 
         <mat-divider></mat-divider>
         <br>
-        <mat-chip-list>
-          <mat-chip>Most recent episode</mat-chip>
-        </mat-chip-list>
-        <div  class="" >
-        </div>
-        <mat-list-item *ngFor="let note of [1,2]" style="color:gray">
-          <mat-icon mat-list-icon >assignment</mat-icon>
-          <h4 mat-line>Week # - {{note.name}}</h4>
-           <span class="">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <span class="">
-          </span>
-          <span class="">
-           <button type="button" mat-button (click)="drawer.toggle();toggleCommentShown()">
-            1 Comment
-           </button>
-          </span>
-        </mat-list-item>
+        <div *ngIf="activeLog">
+         <b class="">
+           {{activeLog.topic}}
+           <br><br>
+         </b>
+         <mat-chip-list style="float:left">
+           <mat-chip>Episode {{activeLog.week}} {{activeLogLabel}} </mat-chip>
+         <audio controls="controls" preload="none" style="float:right"  *ngIf="activeLog.recording_backup" id='audio'>
+          <source type="audio/mpeg"   [src]="audio" />
+         </audio>
+         </mat-chip-list>
+         <br>
+         <br>
+         <button mat-button (click)="drawer.toggle();toggleCommentShown();">{{comments.length}} Comments</button>
+         </div>
+
+        <h3 *ngIf="logs.length>0">
+         <mat-icon mat-list-icon class="fix-icon" >assignment</mat-icon>
+         Available episodes</h3>
+        <p *ngIf="logs.length==0">No episodes registered yet</p>
        </mat-list>
+
+        <div *ngFor="let log of logs;let i=index;" [attr.data-index]="i" class="log-list-item"
+         (click)="changeActiveLog(log)" [ngClass]="{active:activeLog.id==log.id}">
+
+          <span [ngClass]="{hidden:pageEvent.pageIndex != floor(i/5)}">
+           <span >
+            <mat-icon mat-list-icon class="fix-icon" >play_circle_outline </mat-icon> Episode {{log.week}} <i *ngIf="log.topic"> - </i>{{log.topic}}</span>
+            <div class="" style="margin-left:30px;">
+             {{log.focus_statement}}
+            </div>
+           <br>
+           </span>
+          <!-- </i> -->
+        </div>
+
+       <!-- paginator -->
+
+       <mat-paginator [length]="logs.length"
+                     [pageSize]="5"
+                     (page)="pageEvent = $event">
+       </mat-paginator>
+       <!-- end of paginator -->
+
      </div>
      <br>
    </div>
