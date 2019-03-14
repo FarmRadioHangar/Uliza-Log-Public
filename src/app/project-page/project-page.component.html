@@ -44,10 +44,10 @@
              </mat-card-title>
            </mat-card-header>
 
-           <img src="http://localhost:8000/static/img/default_podcast_image.png"
+           <img src="{{image_url}}default_podcast_image.png"
                 alt="Project photo " style="max-width:100%;" *ngIf="!project.image">
 
-           <img src="http://localhost:8000/static/img/{{project.image}}" *ngIf="project.image"
+           <img src="{{image_url}}{{project.image}}" *ngIf="project.image"
                 alt="Project photo " style="max-width:100%;">
            <mat-card-content>
             <br>
@@ -103,7 +103,7 @@
 
         <p>
 
-       <a href="http://localhost:3000/api/v1/logs/feed/{{programControl.value.id}}#itunes" mat-mini-fab color='primary' style="background-color:#449d44">
+       <a href="{{api_url}}logs/feed/{{programControl.value.id}}#itunes" mat-mini-fab color='primary' style="background-color:#449d44">
          <mat-icon aria-label="Example icon-button with a heart icon" style="direction: rtl;" >podcast</mat-icon>
         </a>
         &nbsp;&nbsp;
@@ -115,13 +115,13 @@
         <br>
         <div *ngIf="activeLog">
          <b class="">
-           {{activeLog.topic}}
+           <mat-chip>Episode {{activeLog.week}} {{activeLogLabel}} {{activeLog.topic}}</mat-chip>
+
            <br><br>
          </b>
          <mat-chip-list style="float:left">
-           <mat-chip>Episode {{activeLog.week}} {{activeLogLabel}} </mat-chip>
          <audio controls="controls" preload="none" style="float:right"  *ngIf="activeLog.recording_backup" id='audio'>
-          <source type="audio/mpeg"   [src]="audio" />
+          <source type="audio/mpeg"   [src]="activeLog.recording_backup" />
          </audio>
          </mat-chip-list>
          <br>

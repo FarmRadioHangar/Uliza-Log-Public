@@ -80,6 +80,9 @@ top: 10px;
 
 
 @media screen and (max-width: 850px) {
+.drawer-container {
+ padding: 0
+}
  #drawer {
   width: 85%
  }

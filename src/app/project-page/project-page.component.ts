@@ -10,6 +10,7 @@ import {Meta} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {FormControl} from '@angular/forms';
 import {PageEvent} from '@angular/material';
+import {Env} from '../env';
 
 export interface Section {
   name: string;
@@ -23,12 +24,13 @@ export interface Section {
   './project-page.component.css']
 })
 export class ProjectPageComponent implements OnInit {
+  image_url = Env['image_url'];
+  api_url = Env['api_url'];
   project:Project;
-  programs:Program[];
-  comments:Comment[];
-  logs:Log[];
+  programs:Program[]=[];
+  comments:Comment[] = [];
+  logs:Log[]=[];
   activeLog = null;
-  audio='https://log.uliza.fm/media/Uliza-log-test%201-11.mp3';
   activeLogLabel = ": Most recent episode";
 
 
@@ -108,7 +110,7 @@ export class ProjectPageComponent implements OnInit {
    if (this.activeLog['recording_backup']){
     let audioElement = <HTMLAudioElement> document.getElementById('audio');
     audioElement.pause();
-    audioElement.src = 'https://log.uliza.fm/media/Uliza-log-Kwizera%20Fm%20-%20190%20-%20Phase%2003-6.mp3';
+    audioElement.src = this.activeLog['recording_backup'];
    }
 
    this.activeLogLabel = "";
