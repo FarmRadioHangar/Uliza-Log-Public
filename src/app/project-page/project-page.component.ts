@@ -30,7 +30,7 @@ export class ProjectPageComponent implements OnInit {
   programs:Program[]=[];
   comments:Comment[] = [];
   logs:Log[]=[];
-  activeLog = null;
+  activeLog = {};
   activeLogLabel = ": Most recent episode";
 
 
@@ -62,16 +62,46 @@ export class ProjectPageComponent implements OnInit {
    else
     this.projectService.getProject(String(projectId)).subscribe(
        project => {this.getProjectCountryCode(project['results'][0])});
-
   }
 
   getProjectPrograms(project: any):void {
    if (project) {
     this.programService.getProjectPrograms(String(project['id'])).subscribe(
-     programs => {this.programs = programs['results'];this.programControl.setValue(this.programs[0]);
+     programs => {
+        this.programs = programs['results'];
+        this.setDefaultProgram();
     });
    }
+  }
 
+  setDefaultLog(): void {
+   let logId = +this.route.snapshot.paramMap.get('logId');
+   console.log(logId,'LOGID')
+   if (logId) {
+    for (let log in this.logs) {
+     if (this.logs[log]['id'] == logId) {
+      this.activeLog = this.logs[log];
+      this.activeLogLabel = "";
+      break;
+     }
+    }
+   }
+   else
+    this.activeLog = this.logs[this.logs.length-1]
+  }
+
+  setDefaultProgram(): void {
+   let programId = +this.route.snapshot.paramMap.get('programId');
+   if (programId) {
+    for (let program in this.programs) {
+     if (this.programs[program]['id'] == programId) {
+      this.programControl.setValue(this.programs[program]);
+      break;
+     }
+    }
+   }
+   else
+    this.programControl.setValue(this.programs[0]);
   }
 
   getProjectCountryCode(project: any): void {
@@ -88,8 +118,8 @@ export class ProjectPageComponent implements OnInit {
      logs => {
                this.logs = logs['results'];
                if (this.logs.length>0) {
-                this.activeLog = this.logs[this.logs.length-1]
-                this.loadComments()
+                this.loadComments();
+                this.setDefaultLog();
                }
              });
   }

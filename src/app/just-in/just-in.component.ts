@@ -17,11 +17,19 @@ export class JustInComponent implements OnInit {
 
   getLogs(): void{
    var stationId: any = +this.route.snapshot.paramMap.get('stationId');
+   const partnerName: any = this.route.snapshot.paramMap.get('partnerName');
    if (!stationId){
     stationId = '';
    }
-   this.logService.getLogs(String(stationId))
+
+   if(partnerName) {
+    this.logService.getSearchLogs(String(partnerName))
        .subscribe(logs => this.dataSource = logs['results']);
+   }
+   else {
+    this.logService.getLogs(String(stationId))
+       .subscribe(logs => this.dataSource = logs['results']);
+   }
   }
   ngOnInit() {
    this.getLogs();

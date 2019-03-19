@@ -11,6 +11,7 @@ import {HttpClient} from '@angular/common/http';
 export class LandingPageComponent implements OnInit {
 
  radiostation = null
+ partnerName = null
 
  getStation(id):void {
    this.radioStationService.getStation(id).subscribe(radiostation => this.radiostation = radiostation[0])
@@ -22,9 +23,11 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit() {
    const stationId = +this.route.snapshot.paramMap.get('stationId');
+   const partnerName = this.route.snapshot.paramMap.get('partnerName');
 
    if (stationId)
     this.getStation(stationId);
+   else (partnerName)
+    this.partnerName = partnerName
   }
-
 }

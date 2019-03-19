@@ -1,10 +1,18 @@
-<h2 class='section-header' *ngIf='!radiostation'>Discover Podcasts <span >radio stations all over Africa</span></h2>
+<h2 class='section-header' *ngIf='!radiostation && !partnerName'>
+ <mat-icon mat-list-icon class='fix-icon' style="top:2px">radio</mat-icon>
+ Discover Podcasts <span >radio stations all over Africa</span></h2>
 <h2 class='section-header' *ngIf='radiostation'>
  <mat-icon mat-list-icon>business</mat-icon> {{radiostation['name']}}
  <span>
   {{radiostation['frequency']}} {{radiostation['city']}}
  </span>
 </h2>
+<h1 class='section-header' *ngIf='partnerName'>
+ {{partnerName}}
+ <span>
+  projects
+ </span>
+</h1>
  <app-project-cards></app-project-cards>
  <br>
 

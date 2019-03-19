@@ -22,6 +22,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background:
 			margin: 0;
 }
 
+.fix-icon {
+ position: relative;
+ top: 5px;
+}
 
 .mat-row:hover {
  background-color: #eee;

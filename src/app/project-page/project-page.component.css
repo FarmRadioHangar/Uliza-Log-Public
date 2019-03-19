@@ -19,10 +19,6 @@ background: #449d44;
 .hidden {
  display: none;
 }
-.fix-icon {
- position: relative;
-top: 5px;
-}
 .mat-paginator {
  background-color: #fafafa ;
 }
@@ -42,8 +38,8 @@ top: 5px;
 .hide {
  display: none;
 }
-.log-list-item:hover {
- color: #449d44;
+.log-list-item:hover, .link:hover{
+ color: #449d44!important;
  cursor: pointer;
 }
 .blocked-flag {

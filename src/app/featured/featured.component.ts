@@ -17,12 +17,19 @@ export class FeaturedComponent implements OnInit {
 
   getPrograms(): void{
    var stationId:any = +this.route.snapshot.paramMap.get('stationId');
-   
+   const partnerName:any = this.route.snapshot.paramMap.get('partnerName');
+
    if(!stationId)
     stationId = '';
 
-   this.programService.getPrograms(String(stationId))
+   if(partnerName) {
+    this.programService.getSearchPrograms(String(partnerName))
        .subscribe(programs=> this.dataSource = programs['results']);
+   }
+   else {
+    this.programService.getPrograms(String(stationId))
+       .subscribe(programs=> this.dataSource = programs['results']);
+   }
   }
 
   ngOnInit() {

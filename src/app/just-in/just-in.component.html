@@ -6,7 +6,7 @@
 
   <!-- Position Column -->
   <ng-container matColumnDef="program__name" >
-    <td mat-cell *matCellDef="let element" routerLink='/project/{{element.project}}' >
+    <td mat-cell *matCellDef="let element" routerLink='/project/{{element.project}}/{{element.program}}/{{element.id}}' >
      <b class="sub-text">Episode {{element.week}} &nbsp;</b>
      {{element.program__name}} - {{element.topic}}
     </td>
@@ -14,7 +14,7 @@
 
   <!-- Name Column -->
   <ng-container matColumnDef="created_at" >
-    <td mat-cell *matCellDef="let element" routerLink='/project/{{element.project}}'>
+    <td mat-cell *matCellDef="let element" routerLink='/project/{{element.project}}/{{element.program}}/{{element.id}}'>
      <span style="color:gray">{{element.created_at|humanizeDate}}</span>
     </td>
   </ng-container>

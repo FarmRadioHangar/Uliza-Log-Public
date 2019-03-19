@@ -74,9 +74,17 @@ export class ProjectCardsComponent implements OnInit {
 
   getProjects(): void {
    const stationId = +this.route.snapshot.paramMap.get('stationId');
+   const partnerName = this.route.snapshot.paramMap.get('partnerName');
 
    if (stationId) {
      this.projectService.getStationProjects(String(stationId))
+      .subscribe(projects => {
+       this.next_page=projects['next'];
+       this.projects = projects['results']
+     });
+   }
+   else if (partnerName) {
+     this.projectService.search(String(partnerName))
       .subscribe(projects => {
        this.next_page=projects['next'];
        this.projects = projects['results']
