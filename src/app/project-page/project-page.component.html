@@ -1,4 +1,4 @@
-<div  style="margin-left: -8px;" >
+<div  style="margin-left: -8px;postion:relative" >
   <br>
 
   <mat-drawer-container class="drawer-container"  autosize hasBackdrop='false' >
@@ -112,22 +112,6 @@
         </p>
 
         <mat-divider></mat-divider>
-        <br>
-        <div *ngIf="activeLog">
-         <b class="">
-           <mat-chip>Episode {{activeLog.week}} {{activeLogLabel}} {{activeLog.topic}}</mat-chip>
-
-           <br><br>
-         </b>
-         <mat-chip-list style="float:left">
-         <audio controls="controls" preload="none" style="float:right"  *ngIf="activeLog.recording_backup" id='audio'>
-          <source type="audio/mpeg"   [src]="activeLog.recording_backup" />
-         </audio>
-         </mat-chip-list>
-         <br>
-         <br>
-         <button mat-button (click)="drawer.toggle();toggleCommentShown();">{{comments.length}} Comments</button>
-         </div>
 
         <h3 *ngIf="logs.length>0">
          <mat-icon mat-list-icon class="fix-icon" >assignment</mat-icon>
@@ -159,6 +143,22 @@
 
      </div>
      <br>
+     <br>
+
    </div>
   </mat-drawer-container>
+
+   <div *ngIf="activeLog" id="player">
+    <mat-chip-list style="float:left;">
+    <mat-chip style="float:left;font-size:17px;" >
+     Episode {{activeLog.week}} {{activeLogLabel}} {{activeLog.topic}}</mat-chip>
+    </mat-chip-list>
+
+
+    <button mat-stroked-button (click)="drawer.toggle();toggleCommentShown();"  style="margin-left:20px;float:left">{{comments.length}} Comments</button>
+
+      <audio controls="controls" preload="none"  *ngIf="activeLog.recording_backup" id='audio'>
+       <source type="audio/mpeg"   [src]="activeLog.recording_backup" />
+      </audio>
+   </div>
 </div>

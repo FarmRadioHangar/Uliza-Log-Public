@@ -23,6 +23,7 @@ import { SearchComponent } from './search/search.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ProjectPageComponent } from './project-page/project-page.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { TestComponent } from './test/test/test.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     SearchComponent,
     LandingPageComponent,
     ProjectPageComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,

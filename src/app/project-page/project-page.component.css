@@ -9,6 +9,22 @@
 .mat-badge-content {
 background: #449d44;
 }
+#player {
+  position: fixed;
+  background: white;
+  padding: 1em;
+  padding-right: 20%;
+  border: 1px solid #ddd;
+  left: 0;
+  bottom: 0px;
+  z-index: 99;
+  width: 100%;
+}
+#audio {
+ width:45%;
+ margin-right: 10%;
+ float: right;
+}
 .drawer-container {
  border-radius: 4px;
  padding:20px;
@@ -78,6 +94,13 @@ top: 10px;
 @media screen and (max-width: 850px) {
 .drawer-container {
  padding: 0
+}
+#audio {
+ width:80%;
+ margin-top: 10px;
+}
+#player {
+  padding-left: 0%;
 }
  #drawer {
   width: 85%
