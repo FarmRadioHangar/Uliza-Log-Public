@@ -7,6 +7,7 @@ import {RadiostationService} from '../radiostation.service'
 import {map, startWith} from 'rxjs/operators';
 import {CountryService} from '../country.service';
 import {Router} from '@angular/router';
+import {Env} from '../env';
 
 export interface State {
   flag: string;
@@ -38,6 +39,7 @@ export class SearchComponent {
 
   stateCtrl = new FormControl();
   searchValue = '';
+  sub_site = Env['sub_site'];
 
 
   states: Project[] = [];

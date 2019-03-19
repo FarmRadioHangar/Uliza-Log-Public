@@ -18,7 +18,7 @@
       [style.background-image]="'url(https://www.geonames.org/flags/x/'
       + getProjectCountryCode(result.country) + '.gif)'">
      </div>
-     <a href="/project/{{result.id}}" class="link search-result-text">{{result.name}} - {{result.doner}}</a>
+     <a href="{{sub_site}}project/{{result.id}}" class="link search-result-text">{{result.name}} - {{result.doner}}</a>
    </li>
   </ul>
   </div>
@@ -31,7 +31,7 @@
   </ng-template>
   <ul class="search-single-result">
    <li *ngFor="let result of radiostation_results | async">
-     <a class="link" href="/radio_station/{{result.id}}">
+     <a class="link" href="{{sub_site}}radio_station/{{result.id}}">
      <mat-icon mat-list-icon>business</mat-icon>
      {{result.name}}, {{result.city}}
      </a>
