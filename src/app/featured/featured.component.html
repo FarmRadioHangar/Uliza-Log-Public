@@ -1,45 +1,48 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style='width:96%'>
+<div *ngIf='dataSource.length>0'>
+  <h2 class='section-header '>Featured <span class="" style='font-size:15px'> radio programs</span></h2>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style='width:96%'>
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="project__name">
-    <th mat-header-cell *matHeaderCellDef> Program </th>
-    <td mat-cell *matCellDef="let element" routerLink="/project/{{element.project}}/{{element.id}}" class="link">
-     <span *ngIf='!element.public_name && element.name'>
-      {{element.name.slice(0,22)}}
-      <span *ngIf='element.name && element.name.length>23' >...</span>
-     </span>
-     <span *ngIf='element.public_name'>
-     {{element.public_name.slice(0,22)}}<span *ngIf='element.public_name && element.public_name.length>23' >...</span>
-     </span>
-     <br>
-     <span *ngIf='element.project__name'>
-     ({{element.project__name.slice(0,24)}}<span *ngIf='element.project__name && element.project__name.length>25' >...</span>)
-     </span>
-    </td>
-  </ng-container>
+    <!-- Position Column -->
+    <ng-container matColumnDef="project__name">
+      <th mat-header-cell *matHeaderCellDef> Program </th>
+      <td mat-cell *matCellDef="let element" routerLink="/project/{{element.project}}/{{element.id}}" class="link">
+       <span *ngIf='!element.public_name && element.name'>
+        {{element.name.slice(0,22)}}
+        <span *ngIf='element.name && element.name.length>23' >...</span>
+       </span>
+       <span *ngIf='element.public_name'>
+       {{element.public_name.slice(0,22)}}<span *ngIf='element.public_name && element.public_name.length>23' >...</span>
+       </span>
+       <br>
+       <span *ngIf='element.project__name'>
+       ({{element.project__name.slice(0,24)}}<span *ngIf='element.project__name && element.project__name.length>25' >...</span>)
+       </span>
+      </td>
+    </ng-container>
 
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="radio_station__name">
-    <th mat-header-cell *matHeaderCellDef> Station </th>
-    <td mat-cell *matCellDef="let element" class='link' routerLink="/project/{{element.project}}/{{element.id}}">
-     <span class="sub-text">{{element.country_name}}&nbsp;</span>
-     <br>
-     {{element.radio_station__name}}
-    </td>
-  </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="radio_station__name">
+      <th mat-header-cell *matHeaderCellDef> Station </th>
+      <td mat-cell *matCellDef="let element" class='link' routerLink="/project/{{element.project}}/{{element.id}}">
+       <span class="sub-text">{{element.country_name}}&nbsp;</span>
+       <br>
+       {{element.radio_station__name}}
+      </td>
+    </ng-container>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="program_type">
-    <th mat-header-cell *matHeaderCellDef> Program type </th>
-    <td mat-cell *matCellDef="let element" class='link' routerLink="/project/{{element.project}}/{{element.id}}">
-      {{element.program_type}} {{element.weeks}} weeks
-    </td>
-  </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="program_type">
+      <th mat-header-cell *matHeaderCellDef> Program type </th>
+      <td mat-cell *matCellDef="let element" class='link' routerLink="/project/{{element.project}}/{{element.id}}">
+        {{element.program_type}} {{element.weeks}} weeks
+      </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

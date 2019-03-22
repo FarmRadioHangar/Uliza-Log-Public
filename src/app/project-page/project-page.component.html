@@ -1,6 +1,4 @@
-<div  style="margin-left: -8px;postion:relative" >
-  <br>
-
+<div  style="margin-left: -8px;position:relative" >
   <mat-drawer-container class="drawer-container"  autosize hasBackdrop='false' >
     <mat-drawer #drawer id='drawer' position='end' mode="over" autoFocus="False" >
     <button type="button" mat-button (click)="drawer.toggle();toggleCommentShown()" style="float:right">
@@ -27,7 +25,7 @@
     <br>
     </mat-drawer>
 
-    <div class="row " style="margin:0;">
+    <div class="row " style="margin:0;" >
       <div id="project-normal-view" class="col-xl-4 col-lg-4 col-md-5 col-sm-5 col-xs-9 "  [class.hide]='commentShown'>
         <mat-card class="project-card" >
            <mat-card-header>
@@ -62,7 +60,14 @@
         <br>
      </div>
 
-     <div id="program-details" class="col-xl-6 col-lg-6 col-md-7 col-sm-7 col-xs-12 " style="padding: 0 40px;">
+     <div *ngIf="programs.length==0" style="padding:4em">
+      <h2 class='section-header' >{{project.name}} <span >{{project.doner}}</span></h2>
+      <br><br>
+      No programs registered yet under this project.
+
+     </div>
+
+     <div id="program-details" class="col-xl-6 col-lg-6 col-md-7 col-sm-7 col-xs-12 " style="padding: 0 40px;" *ngIf="programs.length>0">
         <div class="" style="position:relative" [class.hide]='!commentShown'>
 
              <!-- country flag -->
@@ -74,7 +79,7 @@
           <p><b>{{project.start_date |date: "MMM yyyy"}} - {{project.end_date | date: "MMM yyyy"}}</b></p>
         </div>
 
-       <mat-list>
+       <mat-list >
         <mat-list-item style="margin-left:-20px;">
          <p style="color:gray">{{programs.length}} Radio program<span *ngIf="programs.length>1">s</span> in this project</p>
         </mat-list-item>
@@ -116,7 +121,8 @@
         <h3 *ngIf="logs.length>0">
          <mat-icon mat-list-icon class="fix-icon" >assignment</mat-icon>
          Available episodes</h3>
-        <p *ngIf="logs.length==0">No episodes registered yet</p>
+
+         <p *ngIf="logs.length==0">No episodes registered yet</p>
        </mat-list>
 
        <div *ngFor="let log of logs;let i=index;" [attr.data-index]="i" class="log-list-item"
@@ -141,14 +147,14 @@
        </mat-paginator>
        <!-- end of paginator -->
 
-     </div>
-     <br>
-     <br>
+     <br><br>
+     <br><br>
+    </div>
 
    </div>
   </mat-drawer-container>
 
-   <div *ngIf="activeLog" id="player">
+   <div *ngIf="activeLog.id" id="player">
     <mat-chip-list style="float:left;">
     <mat-chip style="float:left;font-size:17px;" >
      Episode {{activeLog.week}} {{activeLogLabel}} {{activeLog.topic}}</mat-chip>

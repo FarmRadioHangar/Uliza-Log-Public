@@ -1,23 +1,27 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8"
- style='width:96%'>
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
+<div *ngIf="dataSource.length>0">
+ <h2 class='section-header'>Just in <span class="" style='font-size:15px'> newest episodes</span></h2>
+ <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"
+  style='width:96%' >
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="program__name" >
-    <td mat-cell *matCellDef="let element" routerLink='/project/{{element.project}}/{{element.program}}/{{element.id}}' >
-     <b class="sub-text">Episode {{element.week}} &nbsp;</b>
-     {{element.program__name}} - {{element.topic}}
-    </td>
-  </ng-container>
+   <!--- Note that these columns can be defined in any order.
+         The actual rendered columns are set as a property on the row definition" -->
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="created_at" >
-    <td mat-cell *matCellDef="let element" routerLink='/project/{{element.project}}/{{element.program}}/{{element.id}}'>
-     <span style="color:gray">{{element.created_at|humanizeDate}}</span>
-    </td>
-  </ng-container>
+   <!-- Position Column -->
+   <ng-container matColumnDef="program__name" >
+     <td mat-cell *matCellDef="let element" routerLink='/project/{{element.project}}/{{element.program}}/{{element.id}}' >
+      <b class="sub-text">Episode {{element.week}} &nbsp;</b>
+      {{element.program__name}} - {{element.topic}}
+     </td>
+   </ng-container>
 
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+   <!-- Name Column -->
+   <ng-container matColumnDef="created_at" >
+     <td mat-cell *matCellDef="let element" routerLink='/project/{{element.project}}/{{element.program}}/{{element.id}}'>
+      <span style="color:gray">{{element.created_at|humanizeDate}}</span>
+     </td>
+   </ng-container>
+
+   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+ </table>
+</div>
