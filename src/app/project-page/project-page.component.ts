@@ -30,7 +30,7 @@ export class ProjectPageComponent implements OnInit {
   programs:Program[]=[];
   comments:Comment[] = [];
   logs:Log[]=[];
-  activeLog:Log={'id':null};
+  activeLog={'id':null};
   activeLogLabel = ": Most recent episode";
 
 
