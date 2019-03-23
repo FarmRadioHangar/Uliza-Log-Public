@@ -24,7 +24,7 @@ export class ProgramService {
 
 
   getSearchPrograms(partnerName:String=''): Observable <Program[]>{
-   const program_url = Env.api_url+'programs?page=1&page_size=10&project__search='+partnerName;
+   const program_url = Env.api_url+'programs?ordering=-created_at&page=1&page_size=10&project__search='+partnerName;
    return this.http.get<Program[]>(program_url);
   }
 

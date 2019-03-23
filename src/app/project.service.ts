@@ -31,7 +31,7 @@ export class ProjectService {
   }
 
   search(string:String): Observable <Project[]> {
-   const project_url = Env.api_url+'projects?search='+string+'&country__not='+Env.exclude_countries;
+   const project_url = Env.api_url+'projects?ordering=-id&search='+string+'&country__not='+Env.exclude_countries;
    return this.http.get<Project[]>(project_url);
   }
 

@@ -26,7 +26,7 @@ export class LogService {
 
 
   getSearchLogs(partnerName:String=''): Observable <Log[]> {
-   const log_url = Env.api_url+'logs?page=1&page_size=11&postpone=false&project__search='+partnerName;
+   const log_url = Env.api_url+'logs?ordering=-created_at&page=1&page_size=11&postpone=false&project__search='+partnerName;
 
    return this.http.get<Log[]>(log_url);
   }
