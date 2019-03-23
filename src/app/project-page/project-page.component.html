@@ -38,7 +38,7 @@
                </span>
               <!-- end country flag -->
 
-              <h3 class='section-header' style="margin-top:0; margin-left:30%">{{project.name}} <span >{{project.doner}}</span></h3>
+              <h3 class='section-header' style="margin-top:0; margin-left:50px">{{project.name}} <span >{{project.doner}}</span></h3>
              </mat-card-title>
            </mat-card-header>
 
@@ -155,7 +155,7 @@
    <div *ngIf="activeLog.id" id="player">
     <mat-chip-list style="float:left;">
     <mat-chip style="float:left;font-size:17px;" >
-     Episode {{activeLog.week}} {{activeLogLabel}} {{activeLog.topic}}</mat-chip>
+     {{activeLogLabel}} Episode {{activeLog.week}} {{activeLog.topic}}</mat-chip>
     </mat-chip-list>
 
 

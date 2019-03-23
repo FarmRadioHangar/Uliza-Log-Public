@@ -18,7 +18,13 @@ export class HumanizeDatePipe implements PipeTransform {
     var elapsed = current - previous;
 
     if (elapsed < msPerMonth) {
-        return Math.round(elapsed/msPerDay) + ' days ago';
+        let day = Math.round(elapsed/msPerDay)
+        if (day==0)
+         return 'Today';
+        else if (day==1)
+         return 'Yesterday';
+        else
+         return Math.round(elapsed/msPerDay) + ' days ago';
     }
 
     else if (elapsed < msPerYear) {

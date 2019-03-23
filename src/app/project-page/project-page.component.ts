@@ -31,7 +31,7 @@ export class ProjectPageComponent implements OnInit {
   comments:Comment[] = [];
   logs:Log[]=[];
   activeLog={'id':null};
-  activeLogLabel = ": Most recent episode";
+  activeLogLabel = "Latest";
 
 
   // MatPaginator Output
